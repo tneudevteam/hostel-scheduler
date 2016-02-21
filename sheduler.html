@@ -5,14 +5,15 @@
     <!--jQuery-->
     <script src='http://code.jquery.com/jquery-latest.min.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css">
+    <link rel="stylesheet" href="fullcalendar-scheduler/fullcalendar-scheduler-1.2.1/scheduler.min.css">
     <!--FullCalendar-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js'></script>
+    <script src="fullcalendar-scheduler/fullcalendar-scheduler-1.2.1/scheduler.min.js"></script>
 
     <script type="text/javascript">
 
-        $(document).ready(function()
-        {
+        $(document).ready(function () {
             /*
              date store today date.
              d store today date.
@@ -39,8 +40,7 @@
                          center define what will be at center position in calendar
                          right define what will be at right position in calendar
                          */
-                        header:
-                        {
+                        header: {
                             left: 'prev,next today',
                             center: 'title',
                             right: 'month,agendaWeek,agendaDay'
@@ -50,6 +50,11 @@
                          for example we have used agendaWeek.
                          */
                         defaultView: 'agendaWeek',
+
+
+                        schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+                        defaultView: 'timelineMonth',
+                        nowIndicator: true,
                         /*
                          selectable:true will enable user to select datetime slot
                          selectHelper will add helpers for selectable.
@@ -63,8 +68,7 @@
                          End means ending time of event.
                          allDay means if events is for entire day or not.
                          */
-                        select: function(start, end, allDay)
-                        {
+                        select: function (start, end, allDay) {
                             /*
                              after selection user will be promted for enter title for event.
                              */
@@ -72,8 +76,7 @@
                             /*
                              if title is enterd calendar will add title and event into fullCalendar.
                              */
-                            if (title)
-                            {
+                            if (title) {
                                 calendar.fullCalendar('renderEvent',
                                         {
                                             title: title,
@@ -101,19 +104,19 @@
                             },
                             {
                                 title: 'Long Event',
-                                start: new Date(y, m, d-5),
-                                end: new Date(y, m, d-2)
+                                start: new Date(y, m, d - 5),
+                                end: new Date(y, m, d - 2)
                             },
                             {
                                 id: 999,
                                 title: 'Repeating Event',
-                                start: new Date(y, m, d-3, 16, 0),
+                                start: new Date(y, m, d - 3, 16, 0),
                                 allDay: false
                             },
                             {
                                 id: 999,
                                 title: 'Repeating Event',
-                                start: new Date(y, m, d+4, 16, 0),
+                                start: new Date(y, m, d + 4, 16, 0),
                                 allDay: false
                             },
                             {
@@ -129,8 +132,8 @@
                             },
                             {
                                 title: 'Birthday Party',
-                                start: new Date(y, m, d+1, 19, 0),
-                                end: new Date(y, m, d+1, 22, 30),
+                                start: new Date(y, m, d + 1, 19, 0),
+                                end: new Date(y, m, d + 1, 22, 30),
                                 allDay: false
                             },
                             {
@@ -139,6 +142,23 @@
                                 end: new Date(y, m, 29),
                                 url: 'http://google.com/'
                             }
+                        ],
+
+                        resources: [
+                            {
+                                id: 'a',
+                                title: 'Room A',
+                                children: [
+                                    {
+                                        id: 'a1',
+                                        title: 'Room A1'
+                                    },
+                                    {
+                                        id: 'a2',
+                                        title: 'Room A2'
+                                    }
+                                ]
+                            }
                         ]
                     });
 
@@ -146,15 +166,14 @@
 
     </script>
     <style type="text/css">
-        body
-        {
+        body {
             margin-top: 40px;
             text-align: center;
             font-size: 14px;
-            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
         }
-        #calendar
-        {
+
+        #calendar {
             width: 900px;
             margin: 0 auto;
         }
