@@ -2,12 +2,10 @@
 <html>
 <head>
     <title>FullCalendar</title>
-    <!--jQuery-->
-    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
-    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+    <script src='http://code.jquery.com/jquery-latest.min.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css">
     <link rel="stylesheet" href="fullcalendar-scheduler/fullcalendar-scheduler-1.2.1/scheduler.min.css">
-    <!--FullCalendar-->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js'></script>
     <script src="fullcalendar-scheduler/fullcalendar-scheduler-1.2.1/scheduler.min.js"></script>
@@ -24,8 +22,7 @@
                     {
                         header: {
                             left: 'prev,next today',
-                            center: 'title',
-                            right: 'month,agendaWeek,agendaDay'
+                            center: 'title'
                         },
 
                         schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
@@ -97,6 +94,17 @@
                                 start: new Date(y, m, 28),
                                 end: new Date(y, m, 29),
                                 url: 'http://google.com/'
+                            }
+                        ],
+
+                        resourceColumns: [
+                            {
+                                labelText: 'Hostel',
+                                field: 'title'
+                            },
+                            {
+                                labelText: 'State',
+                                field: 'lname'
                             }
                         ],
 
@@ -179,7 +187,6 @@
                             }
                         ]
                     });
-
         });
 
     </script>
