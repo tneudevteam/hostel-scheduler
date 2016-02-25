@@ -34,15 +34,15 @@
                         selectable: true,
                         selectHelper: true,
 
-                        select: function (start, end, allDay) {
+                        select: function (start, end, jsEvent, view, resource) {
                             var title = prompt('Event Title:');
                             if (title) {
                                 calendar.fullCalendar('renderEvent',
                                         {
                                             title: title,
+                                            resourceId: resource.id,
                                             start: start,
-                                            end: end,
-                                            allDay: allDay
+                                            end: end
                                         },
                                         true // make the event "stick"
                                 );
@@ -62,15 +62,17 @@
                                 end: new Date(y, m, d - 2)
                             },
                             {
-                                id: 999,
+                                id: 'A',
+                                resourceId: 'A',
                                 title: 'Repeating Event',
                                 start: new Date(y, m, d - 3, 16, 0),
                                 allDay: false
                             },
                             {
-                                id: 999,
+                                id: 'a1',
                                 title: 'Repeating Event',
                                 start: new Date(y, m, d + 4, 16, 0),
+                                resourceId: 'a1',
                                 allDay: false
                             },
                             {
