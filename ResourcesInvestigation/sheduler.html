@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FullCalendar</title>
+
+    <script src='http://code.jquery.com/jquery-latest.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css">
+    <link rel="stylesheet" href="../fullcalendar-scheduler/fullcalendar-scheduler-1.2.1/scheduler.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js'></script>
+    <script src="../fullcalendar-scheduler/fullcalendar-scheduler-1.2.1/scheduler.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+
+            var calendar = $('#calendar').fullCalendar(
+                    {
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title'
+                        },
+
+                        schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+                        defaultView: 'timelineMonth',
+                        nowIndicator: true,
+                        selectable: true,
+                        selectHelper: true,
+
+                        select: function (start, end, jsEvent, view, resource) {
+                            var title = prompt('Name:');
+                            if (title) {
+                                calendar.fullCalendar('renderEvent',
+                                        {
+                                            title: title,
+                                            resourceId: resource.id,
+                                            start: start,
+                                            end: end
+                                        },
+                                        true // make the event "stick"
+                                );
+                            }
+                            calendar.fullCalendar('unselect');
+                        },
+                        editable: true,
+
+                        events: [
+                            {
+                                title: 'All Day Event',
+                                start: new Date(y, m, 1)
+                            },
+                            {
+                                title: 'Long Event',
+                                start: new Date(y, m, d - 5),
+                                end: new Date(y, m, d - 2)
+                            },
+                            {
+                                id: 'A',
+                                resourceId: 'A',
+                                title: 'Repeating Event',
+                                start: new Date(y, m, d - 3, 16, 0),
+                                allDay: false
+                            },
+                            {
+                                id: 'a1',
+                                title: 'Repeating Event',
+                                start: new Date(y, m, d + 4, 16, 0),
+                                resourceId: 'a1',
+                                allDay: false
+                            },
+                            {
+                                title: 'Meeting',
+                                start: new Date(y, m, d, 10, 30),
+                                allDay: false
+                            },
+                            {
+                                title: 'Lunch',
+                                start: new Date(y, m, d, 12, 0),
+                                end: new Date(y, m, d, 14, 0),
+                                allDay: false
+                            },
+                            {
+                                title: 'Birthday Party',
+                                start: new Date(y, m, d + 1, 19, 0),
+                                end: new Date(y, m, d + 1, 22, 30),
+                                allDay: false
+                            },
+                            {
+                                title: 'Click for Google',
+                                start: new Date(y, m, 28),
+                                end: new Date(y, m, 29),
+                                url: 'http://google.com/'
+                            }
+                        ],
+
+                        eventRender: function(event, element) {
+                            element.find('.fc-title').append("<br/>" + event.description);
+                        },
+
+
+                        resourceColumns: [
+                            {
+                                labelText: 'Hostel',
+                                field: 'title'
+                            },
+                            {
+                                labelText: 'Size',
+                                field: 'size'
+                            },
+                            {
+                                labelText: 'State',
+                                field: 'state'
+                            }
+                        ],
+
+                        resourceGroupField: 'groupId',
+                        resources: [
+                            {
+                                id: 'A',
+                                groupId: 'First floor',
+                                title: 'room 1',
+                                size: '2',
+                                state: 'ready',
+                                children: [
+                                    {
+                                        id: 'a1',
+                                        title: 'bed 1',
+                                        size: '1',
+                                        state: 'ready'
+                                    },
+                                    {
+                                        id: 'a2',
+                                        title: 'bed 2',
+                                        size: '1',
+                                        state: 'ready'
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'B',
+                                groupId: 'First floor',
+                                title: 'room 2',
+                                children: [
+                                    {
+                                        id: 'b1',
+                                        title: 'bed 1'
+                                    },
+                                    {
+                                        id: 'b2',
+                                        title: 'bed 2'
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'D',
+                                groupId: 'First floor',
+                                title: 'room 3',
+                                children: [
+                                    {
+                                        id: 'd1',
+                                        title: 'bed 1'
+                                    },
+                                    {
+                                        id: 'd2',
+                                        title: 'bed 2'
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'E',
+                                groupId: 'Second floor',
+                                title: 'room 21',
+                                children: [
+                                    {
+                                        id: 'e1',
+                                        title: 'bed 1'
+                                    },
+                                    {
+                                        id: 'e2',
+                                        title: 'bed 2'
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'C',
+                                groupId: 'Second floor',
+                                title: 'room 22',
+                                children: [
+                                    {
+                                        id: 'c1',
+                                        title: 'bed 1'
+                                    },
+                                    {
+                                        id: 'c2',
+                                        title: 'bed 2'
+                                    }
+                                ]
+                            }
+                        ]
+                    });
+        });
+
+    </script>
+    <style type="text/css">
+        body {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+        }
+
+        #calendar {
+            width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id='calendar'></div>
+
+</body>
+</html>

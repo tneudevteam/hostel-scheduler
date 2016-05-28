@@ -1,0 +1,30 @@
+So, to add new column to resources we new add next code to "resourceColumns" array while instantiating "fullCalendar":
+{
+	labelText: 'Size', // name of column
+	field: 'size'      // property, which will be used while creating rows
+}
+
+Example of filling multiple columns:
+resources: [
+                            {
+                                id: 'A',
+                                groupId: 'First floor',
+                                title: 'room 1',
+                                size: 'test',
+                                state: 'ready',
+                                children: [
+                                    {
+                                        id: 'a1',
+                                        title: 'bed 1',
+                                        size: 'test',
+                                        state: 'ready'
+                                    },
+                                    {
+                                        id: 'a2',
+                                        title: 'bed 2',
+                                        size: 'test',
+                                        state: 'ready'
+                                    }
+                                ]
+                            }
+	]
