@@ -5,6 +5,16 @@
     <script src='http://code.jquery.com/jquery-latest.min.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css">
     <link rel="stylesheet" href="fullcalendar-scheduler/fullcalendar-scheduler-1.2.1/scheduler.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="bootbox.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js'></script>
@@ -32,7 +42,41 @@
                         selectHelper: true,
 
                         select: function (start, end, jsEvent, view, resource) {
-                            var title = prompt('Name:');
+                            bootbox.dialog({
+                title: "This is a form in a modal.",
+                message: '<div class="row">  ' +
+                    '<div class="col-md-12"> ' +
+                    '<form class="form-horizontal"> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="col-md-4 control-label" for="name">Name</label> ' +
+                    '<div class="col-md-4"> ' +
+                    '<input id="name" name="name" type="text" placeholder="Your name" class="form-control input-md"> ' +
+                    '<span class="help-block">Here goes your name</span> </div> ' +
+                    '</div> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="col-md-4 control-label" for="awesomeness">How awesome is this?</label> ' +
+                    '<div class="col-md-4"> <div class="radio"> <label for="awesomeness-0"> ' +
+                    '<input type="radio" name="awesomeness" id="awesomeness-0" value="Really awesome" checked="checked"> ' +
+                    'Really awesome </label> ' +
+                    '</div><div class="radio"> <label for="awesomeness-1"> ' +
+                    '<input type="radio" name="awesomeness" id="awesomeness-1" value="Super awesome"> Super awesome </label> ' +
+                    '</div> ' +
+                    '</div> </div>' +
+                    '</form> </div>  </div>',
+                buttons: {
+                    success: {
+                        label: "Save",
+                        className: "btn-success",
+                        callback: function () {
+                            var name = $('#name').val();
+                            var answer = $("input[name='awesomeness']:checked").val()
+                            Example.show("Hello " + name + ". You've chosen <b>" + answer + "</b>");
+                        }
+                    }
+                }
+            }
+        );
+                            var title = 'Name:';
                             if (title) {
                                 calendar.fullCalendar('renderEvent',
                                         {
