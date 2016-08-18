@@ -1,0 +1,23 @@
+{
+  "name": "hostel-scheduler",
+  "version": "1.0.0",
+  "description": "Hostel Scheduler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tneudevteam/hostel-scheduler.git"
+  },
+  "author": "Vlad Holubiev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tneudevteam/hostel-scheduler/issues"
+  },
+  "homepage": "https://github.com/tneudevteam/hostel-scheduler#readme",
+  "dependencies": {
+    "bootbox": "^4.4.0",
+    "fullcalendar-scheduler": "^1.3.3"
+  }
+}
