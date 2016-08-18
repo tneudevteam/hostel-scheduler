@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>FullCalendar</title>
+    <meta charset="utf-8"/>
     <script src='http://code.jquery.com/jquery-latest.min.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css">
     <link rel="stylesheet" href="fullcalendar-scheduler/fullcalendar-scheduler-1.2.1/scheduler.min.css">
@@ -43,103 +44,196 @@
 
                         select: function (start, end, jsEvent, view, resource) {
                             bootbox.dialog({
-                title: "This is a form in a modal.",
-                message: '<div class="row">  ' +
-                    '<div class="col-md-12"> ' +
-                    '<form class="form-horizontal"> ' +
-                    '<div class="form-group"> ' +
-                    '<label class="col-md-4 control-label" for="name">Name</label> ' +
-                    '<div class="col-md-4"> ' +
-                    '<input id="name" name="name" type="text" placeholder="Your name" class="form-control input-md"> ' +
-                    '<span class="help-block">Here goes your name</span> </div> ' +
-                    '</div> ' +
-                    '<div class="form-group"> ' +
-                    '<label class="col-md-4 control-label" for="awesomeness">How awesome is this?</label> ' +
-                    '<div class="col-md-4"> <div class="radio"> <label for="awesomeness-0"> ' +
-                    '<input type="radio" name="awesomeness" id="awesomeness-0" value="Really awesome" checked="checked"> ' +
-                    'Really awesome </label> ' +
-                    '</div><div class="radio"> <label for="awesomeness-1"> ' +
-                    '<input type="radio" name="awesomeness" id="awesomeness-1" value="Super awesome"> Super awesome </label> ' +
-                    '</div> ' +
-                    '</div> </div>' +
-                    '</form> </div>  </div>',
-                buttons: {
-                    success: {
-                        label: "Save",
-                        className: "btn-success",
-                        callback: function () {
-                            var name = $('#name').val();
-                            var answer = $("input[name='awesomeness']:checked").val()
-                            Example.show("Hello " + name + ". You've chosen <b>" + answer + "</b>");
-                        }
-                    }
-                }
-            }
-        );
-                            var title = 'Name:';
-                            if (title) {
-                                calendar.fullCalendar('renderEvent',
-                                        {
-                                            title: title,
-                                            resourceId: resource.id,
-                                            start: start,
-                                            end: end
-                                        },
-                                        true // make the event "stick"
-                                );
+                            title: "This is a form in a modal.",
+                            message: '<div class="row">  ' +
+                                     '<div class="col-md-12"> ' +
+                                     '<form class="form-horizontal"> ' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="surname">Прізвище</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="surname" name="surname" type="text" placeholder="Прізвище" class="form-control input-md"> ' +
+                                     '</div>  </div>'+
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="name">Ім`я</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="name" name="name" type="text" placeholder="Ім`я" class="form-control input-md"> ' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="middlename">По-батькові</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="middlename" name="middlename" type="text" placeholder="По-батькові" class="form-control input-md"> ' +
+                                     '</div>  </div>' +      
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="isFamily" class="form-control">Сімейник</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="isFamily" name="isFamily" type="checkbox" value="">' +
+                                     '</div>  </div>'+ 
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="purpose">Мета поселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<textarea id="purpose" name="purpose" style="resize:none" rows="2" placeholder="Мета поселення" class="form-control input-md"/> ' +
+                                     '</div>  </div>'+ 
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="birthDate">Дата народження</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="birthDate" name="birthDate" type="date" class="form-control input-md" value="' + start.format("YYYY-MM-DD") + '">' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="pasportInfo">Паспортні дані</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="pasportInfo" name="pasportInfo" type="text" placeholder="Паспортні дані" class="form-control input-md"> ' +
+                                     '</div>  </div>' + 
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="livesBy">Поселений за</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<select class="form-control" id="livesBy" name="livesBy">' +
+                                     '<option>Поданням</option>' +
+                                     '<option>Наказом</option>' +
+                                     '<option>...</option>' +
+                                     '</select>' +
+                                     '</div>  </div>' + 
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="startDate">Дата поселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="startDate" name="startDate" type="date" class="form-control input-md" value="' + start.format("YYYY-MM-DD") + '">' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="startTime">Час поселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="startTime" name="startTime" type="time" class="form-control input-md" value="' + start.format("HH:mm") + '">' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="endDate">Дата виселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="endDate" name="endDate" type="date" class="form-control input-md" value="' + end.format("YYYY-MM-DD") + '">' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' + 
+                                     '<label class="col-md-4 control-label" for="endTime">Час виселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="endTime" name="endTime" type="time" class="form-control input-md" value="' + end.format("HH:mm") + '">' +
+                                     '</div>  </div>' +
+                                     '</form> </div>  </div>',
+                             buttons: {
+                                success: {
+                                    label: "Save",
+                                    className: "btn-success",
+                                    callback: function () { 
+                                        var title = $("input[name='surname']").val() + ' ' + $("input[name='name']").val() + ' ' + $("input[name='middlename']").val();
+                                        if (title) {
+                                            calendar.fullCalendar('renderEvent',
+                                            {
+                                                surname: $("input[name='surname']").val(),
+                                                name: $("input[name='name']").val(),
+                                                title: title,
+                                                resourceId: resource.id,
+                                                start: start,
+                                                end: end,
+                                                backgroundColor: 'yellow',
+                                                textColor: 'black'
+                                            },
+                                            true // make the event "stick"
+                                            );
+                                        }
+                                        calendar.fullCalendar('unselect');
+                                    }
+                                }
                             }
-                            calendar.fullCalendar('unselect');
-                        },
+                        });},
+
                         editable: true,
 
-                        events: [
-                            {
-                                title: 'All Day Event',
-                                start: new Date(y, m, 1)
-                            },
-                            {
-                                title: 'Long Event',
-                                start: new Date(y, m, d - 5),
-                                end: new Date(y, m, d - 2)
-                            },
-                            {
-                                id: 'A',
-                                resourceId: 'A',
-                                title: 'Repeating Event',
-                                start: new Date(y, m, d - 3, 16, 0),
-                                allDay: false
-                            },
-                            {
-                                id: 'a1',
-                                title: 'Repeating Event',
-                                start: new Date(y, m, d + 4, 16, 0),
-                                resourceId: 'a1',
-                                allDay: false
-                            },
-                            {
-                                title: 'Meeting',
-                                start: new Date(y, m, d, 10, 30),
-                                allDay: false
-                            },
-                            {
-                                title: 'Lunch',
-                                start: new Date(y, m, d, 12, 0),
-                                end: new Date(y, m, d, 14, 0),
-                                allDay: false
-                            },
-                            {
-                                title: 'Birthday Party',
-                                start: new Date(y, m, d + 1, 19, 0),
-                                end: new Date(y, m, d + 1, 22, 30),
-                                allDay: false
-                            },
-                            {
-                                title: 'Click for Google',
-                                start: new Date(y, m, 28),
-                                end: new Date(y, m, 29),
-                                url: 'http://google.com/'
+                        eventClick: function(event, element) {   
+                            var x = $('tr[data-resource-id="C"]');
+                            console.log(x);
+                            x.focus();
+                            
+                            bootbox.dialog({
+                            title: "This is a form in a modal.",
+                            message: '<div class="row">  ' +
+                                     '<div class="col-md-12"> ' +
+                                     '<form class="form-horizontal"> ' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="surname">Прізвище</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="surname" name="surname" type="text" placeholder="Прізвище" class="form-control input-md" value="' + event.surname + '"></input> ' +
+                                     '</div>  </div>'+
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="name">Ім`я</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="name" name="name" type="text" placeholder="Ім`я" class="form-control input-md" value="' + event.name + '"> ' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="middlename">По-батькові</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="middlename" name="middlename" type="text" placeholder="По-батькові" class="form-control input-md"> ' +
+                                     '</div>  </div>' +      
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="isFamily" class="form-control">Сімейник</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="isFamily" name="isFamily" type="checkbox" value="">' +
+                                     '</div>  </div>'+ 
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="purpose">Мета поселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<textarea id="purpose" name="purpose" style="resize:none" rows="2" placeholder="Мета поселення" class="form-control input-md"/> ' +
+                                     '</div>  </div>'+ 
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="birthDate">Дата народження</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="birthDate" name="birthDate" type="date" class="form-control input-md" value="' + event.start.format("YYYY-MM-DD") + '">' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="pasportInfo">Паспортні дані</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="pasportInfo" name="pasportInfo" type="text" placeholder="Паспортні дані" class="form-control input-md"> ' +
+                                     '</div>  </div>' + 
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="livesBy">Поселений за</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<select class="form-control" id="livesBy" name="livesBy">' +
+                                     '<option>Поданням</option>' +
+                                     '<option>Наказом</option>' +
+                                     '<option>...</option>' +
+                                     '</select>' +
+                                     '</div>  </div>' + 
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="startDate">Дата поселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="startDate" name="startDate" type="date" class="form-control input-md" value="' + event.start.format("YYYY-MM-DD") + '">' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="startTime">Час поселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="startTime" name="startTime" type="time" class="form-control input-md" value="' + event.start.format("HH:mm") + '">' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' +
+                                     '<label class="col-md-4 control-label" for="endDate">Дата виселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="endDate" name="endDate" type="date" class="form-control input-md" value="' + event.end.format("YYYY-MM-DD") + '">' +
+                                     '</div>  </div>' +
+                                     '<div class="form-group"> ' + 
+                                     '<label class="col-md-4 control-label" for="endTime">Час виселення</label> ' +
+                                     '<div class="col-md-4"> ' +
+                                     '<input id="endTime" name="endTime" type="time" class="form-control input-md" value="' + event.end.format("HH:mm") + '">' +
+                                     '</div>  </div>' +
+                                     '</form> </div>  </div>',
+                             buttons: {
+                                success: {
+                                    label: "Save",
+                                    className: "btn-success",
+                                    callback: function () {        
+                                        event.surname = $("input[name='surname']").val();
+                                        event.name = $("input[name='name']").val();
+                                        event.title = event.surname + " " + event.name;
+                                        event.backgroundColor = 'green';      
+                                        $('#calendar').fullCalendar('updateEvent', event);       
+                                    }
+                                }
                             }
-                        ],
+                        });
+                        },
+
+                        events: [ ],
 
                         eventRender: function(event, element) {
                             element.find('.fc-title').append("<br/>" + event.description);
@@ -150,10 +244,6 @@
                             {
                                 labelText: 'Hostel',
                                 field: 'title'
-                            },
-                            {
-                                labelText: 'State',
-                                field: 'lname'
                             }
                         ],
 
@@ -239,6 +329,7 @@
         });
 
     </script>
+
     <style type="text/css">
         body {
             margin-top: 40px;
@@ -248,7 +339,7 @@
         }
 
         #calendar {
-            width: 900px;
+            width: 90%;
             margin: 0 auto;
         }
     </style>
