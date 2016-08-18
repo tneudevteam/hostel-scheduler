@@ -3,6 +3,9 @@ $(document).ready(function() {
   var d = date.getDate();
   var m = date.getMonth();
   var y = date.getFullYear();
+  var db = low('db');
+  db.defaults({events: []}).value();
+  var events = db.get('events').value();
 
   var calendar = $('#calendar').fullCalendar(
     {
@@ -95,19 +98,22 @@ $(document).ready(function() {
               callback: function() {
                 var title = $("input[name='surname']").val() + ' ' + $("input[name='name']").val() + ' ' + $("input[name='middlename']").val();
                 if (title) {
+                  var newEvent = {
+                    surname: $("input[name='surname']").val(),
+                    name: $("input[name='name']").val(),
+                    title: title,
+                    resourceId: resource.id,
+                    start: start,
+                    end: end,
+                    backgroundColor: 'yellow',
+                    textColor: 'black',
+                    id: cuid()
+                  };
                   calendar.fullCalendar('renderEvent',
-                    {
-                      surname: $("input[name='surname']").val(),
-                      name: $("input[name='name']").val(),
-                      title: title,
-                      resourceId: resource.id,
-                      start: start,
-                      end: end,
-                      backgroundColor: 'yellow',
-                      textColor: 'black'
-                    },
+                    newEvent,
                     true // make the event "stick"
                   );
+                  db.get('events').push(newEvent).value();
                 }
                 calendar.fullCalendar('unselect');
               }
@@ -203,6 +209,14 @@ $(document).ready(function() {
                 event.title = event.surname + " " + event.name;
                 event.backgroundColor = 'green';
                 $('#calendar').fullCalendar('updateEvent', event);
+
+                db.get('events').find({id: event.id}).assign({
+                  surname: event.surname,
+                  name: event.name,
+                  title: event.title,
+                  backgroundColor: event.backgroundColor
+                }).value();
+                db.write('db');
               }
             }
           }
@@ -302,4 +316,9 @@ $(document).ready(function() {
         }
       ]
     });
+
+  // Render previously saved events from local storage
+  events.forEach(function(event) {
+    calendar.fullCalendar('renderEvent', event, true);
+  });
 });
