@@ -18,6 +18,9 @@
   "homepage": "https://github.com/tneudevteam/hostel-scheduler#readme",
   "dependencies": {
     "bootbox": "^4.4.0",
-    "fullcalendar-scheduler": "^1.3.3"
+    "bootstrap": "^3.3.7",
+    "fullcalendar-scheduler": "^1.3.3",
+    "jquery": "^3.1.0",
+    "moment": "^2.14.1"
   }
 }
