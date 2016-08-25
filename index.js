@@ -13,9 +13,10 @@ var cuid = require('cuid');
 var addResidentTemplate = require('./templates/add-resident.handlebars');
 var editResidentTemplate = require('./templates/edit-resident.handlebars');
 
+var db = low('db');
+var floors = require('./floors');
+
 $(document).ready(function() {
-  var date = new Date();
-  var db = low('db');
   db.defaults({events: []}).value();
   var events = db.get('events').value();
 
@@ -130,83 +131,7 @@ $(document).ready(function() {
       ],
 
       resourceGroupField: 'groupId',
-      resources: [
-        {
-          id: 'A',
-          groupId: 'First floor',
-          title: 'room 1',
-          children: [
-            {
-              id: 'a1',
-              title: 'bed 1'
-            },
-            {
-              id: 'a2',
-              title: 'bed 2'
-            }
-          ]
-        },
-        {
-          id: 'B',
-          groupId: 'First floor',
-          title: 'room 2',
-          children: [
-            {
-              id: 'b1',
-              title: 'bed 1'
-            },
-            {
-              id: 'b2',
-              title: 'bed 2'
-            }
-          ]
-        },
-        {
-          id: 'D',
-          groupId: 'First floor',
-          title: 'room 3',
-          children: [
-            {
-              id: 'd1',
-              title: 'bed 1'
-            },
-            {
-              id: 'd2',
-              title: 'bed 2'
-            }
-          ]
-        },
-        {
-          id: 'E',
-          groupId: 'Second floor',
-          title: 'room 21',
-          children: [
-            {
-              id: 'e1',
-              title: 'bed 1'
-            },
-            {
-              id: 'e2',
-              title: 'bed 2'
-            }
-          ]
-        },
-        {
-          id: 'C',
-          groupId: 'Second floor',
-          title: 'room 22',
-          children: [
-            {
-              id: 'c1',
-              title: 'bed 1'
-            },
-            {
-              id: 'c2',
-              title: 'bed 2'
-            }
-          ]
-        }
-      ]
+      resources: floors
     });
 
   // Render previously saved events from local storage
