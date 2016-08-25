@@ -6,13 +6,14 @@
 1. `git clone git@github.com:tneudevteam/hostel-scheduler.git`
 2. `cd hostel-scheduler`
 3. `npm install`
-4. `npm run build` - to bundle all JavaScript code into one file
-    4.1 `npm run watch` - automatically rebuild code into bundle on every file change
-5. `npm start` - to open Hostel Scheduler in your browser
+4. `npm run watch` - this will bundle code into one file for browser on every file change
+5. `npm start` - open Hostel Scheduler in your browser
 6. ... make changes
 7. `npm run lint` - to check code style
 
 Currently all the events are stored in browser local storage.
+
+`npm run build` -  bundle and *minify* code into one file 
 
 # Screenshots
 
