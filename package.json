@@ -4,7 +4,7 @@
   "description": "Hostel Scheduler",
   "main": "index.js",
   "scripts": {
-    "build": "browserify -t browserify-handlebars index.js > bundle.js",
+    "build": "browserify -t browserify-handlebars index.js | uglifyjs -c > bundle.js",
     "lint": "eslint . --fix --format=node_modules/eslint-formatter-pretty",
     "start": "opn ./index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -38,6 +38,7 @@
     "eslint": "^3.3.1",
     "eslint-config-google": "^0.6.0",
     "eslint-formatter-pretty": "^0.3.1",
+    "uglifyify": "^3.0.2",
     "watchify": "^3.7.0"
   }
 }
