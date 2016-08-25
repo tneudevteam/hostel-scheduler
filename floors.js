@@ -1,3 +1,7 @@
+/**
+ * List of floors, rooms and beds for scheduler
+ * @type {Object[]}
+ */
 module.exports = [
   {
     id: 'A',
