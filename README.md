@@ -13,7 +13,9 @@
 
 Currently all the events are stored in browser local storage.
 
-`npm run build` -  bundle and *minify* code into one file 
+You can write in ES2015, Babel is included to the project.
+
+`npm run build` -  bundle and *minify* code into one file.
 
 # Screenshots
 
