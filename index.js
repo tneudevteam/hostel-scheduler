@@ -35,24 +35,28 @@ $(document).ready(function() {
 
       select: function(start, end, jsEvent, view, resource) {
         bootbox.dialog({
-          title: "This is a form in a modal.",
+          title: 'Форма поселення',
           message: addResidentTemplate({
-            birthDate: start.format("YYYY-MM-DD"),
-            livingStartDate: start.format("YYYY-MM-DD"),
-            livingStartTime: start.format("HH:mm"),
-            livingEndDate: end.format("YYYY-MM-DD"),
-            livingEndTime: end.format("HH:mm")
+            birthDate: start.format('YYYY-MM-DD'),
+            livingStartDate: start.format('YYYY-MM-DD'),
+            livingStartTime: start.format('HH:mm'),
+            livingEndDate: end.format('YYYY-MM-DD'),
+            livingEndTime: end.format('HH:mm')
           }),
           buttons: {
             success: {
-              label: "Save",
-              className: "btn-success",
+              label: 'Зберегти',
+              className: 'btn-success',
               callback: function() {
-                var title = $("input[name='surname']").val() + ' ' + $("input[name='name']").val() + ' ' + $("input[name='middlename']").val();
+                var $surname = $('input[name=surname]');
+                var $name = $('input[name=name]');
+                var $middlename = $('input[name=middlename]');
+
+                var title = $surname.val() + ' ' + $name.val() + ' ' + $middlename.val();
                 if (title) {
                   var newEvent = {
-                    surname: $("input[name='surname']").val(),
-                    name: $("input[name='name']").val(),
+                    surname: $surname.val(),
+                    name: $name.val(),
                     title: title,
                     resourceId: resource.id,
                     start: start,
@@ -63,7 +67,7 @@ $(document).ready(function() {
                   };
                   calendar.fullCalendar('renderEvent',
                     newEvent,
-                    true // make the event "stick"
+                    true // make the event 'stick'
                   );
                   db.get('events').push(newEvent).value();
                 }
@@ -77,29 +81,28 @@ $(document).ready(function() {
       editable: true,
 
       eventClick: function(event, element) {
-        var x = $('tr[data-resource-id="C"]');
-        console.log(x);
+        var x = $('tr[data-resource-id=C]');
         x.focus();
 
         bootbox.dialog({
-          title: "This is a form in a modal.",
+          title: 'Форма поселення',
           message: editResidentTemplate({
             name: event.name,
             surname: event.surname,
-            birthDate: event.start.format("YYYY-MM-DD"),
-            livingStartDate: event.start.format("YYYY-MM-DD"),
-            livingStartTime: event.start.format("HH:mm"),
-            livingEndDate: event.end.format("YYYY-MM-DD"),
-            livingEndTime: event.end.format("HH:mm")
+            birthDate: event.start.format('YYYY-MM-DD'),
+            livingStartDate: event.start.format('YYYY-MM-DD'),
+            livingStartTime: event.start.format('HH:mm'),
+            livingEndDate: event.end.format('YYYY-MM-DD'),
+            livingEndTime: event.end.format('HH:mm')
           }),
           buttons: {
             success: {
-              label: "Save",
-              className: "btn-success",
+              label: 'Зберегти',
+              className: 'btn-success',
               callback: function() {
-                event.surname = $("input[name='surname']").val();
-                event.name = $("input[name='name']").val();
-                event.title = event.surname + " " + event.name;
+                event.surname = $('input[name=surname]').val();
+                event.name = $('input[name=name]').val();
+                event.title = event.surname + ' ' + event.name;
                 event.backgroundColor = 'green';
                 $('#calendar').fullCalendar('updateEvent', event);
 
@@ -119,7 +122,7 @@ $(document).ready(function() {
       events: [],
 
       eventRender: function(event, element) {
-        element.find('.fc-title').append("<br/>" + event.description);
+        element.find('.fc-title').append('<br/>' + event.description);
       },
 
       resourceColumns: [
