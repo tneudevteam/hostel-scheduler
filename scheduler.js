@@ -12,9 +12,6 @@ var cuid = require('cuid');
 
 $(document).ready(function() {
   var date = new Date();
-  var d = date.getDate();
-  var m = date.getMonth();
-  var y = date.getFullYear();
   var db = low('db');
   db.defaults({events: []}).value();
   var events = db.get('events').value();
