@@ -4,11 +4,11 @@
   "description": "Hostel Scheduler",
   "main": "index.js",
   "scripts": {
-    "build": "browserify -t browserify-handlebars index.js | uglifyjs -c > bundle.js",
+    "build": "browserify -t browserify-handlebars index.js -t babelify --presets es2015 -t uglifyjs -o bundle.js",
     "lint": "eslint . --fix --format=node_modules/eslint-formatter-pretty",
     "start": "opn ./index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify -t browserify-handlebars index.js -o bundle.js -v"
+    "watch": "watchify -t browserify-handlebars index.js -t babelify --presets es2015 -o bundle.js -v"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,8 @@
     "opn-cli": "^3.1.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "browserify-handlebars": "^1.0.0",
     "eslint": "^3.3.1",
