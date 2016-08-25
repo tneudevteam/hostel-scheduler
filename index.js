@@ -4,22 +4,16 @@ require('bootstrap');
 require('moment');
 require('fullcalendar');
 require('fullcalendar-scheduler');
-window._ = require('lodash');
 
 var bootbox = require('bootbox');
-var low = require('lowdb');
-var cuid = require('cuid');
 
 var addResidentTemplate = require('./templates/add-resident.handlebars');
 var editResidentTemplate = require('./templates/edit-resident.handlebars');
 
-var db = low('db');
+var events = require('./events');
 var floors = require('./floors');
 
 $(document).ready(function() {
-  db.defaults({events: []}).value();
-  var events = db.get('events').value();
-
   var calendar = $('#calendar').fullCalendar(
     {
       header: {
@@ -62,14 +56,14 @@ $(document).ready(function() {
                     start: start,
                     end: end,
                     backgroundColor: 'yellow',
-                    textColor: 'black',
-                    id: cuid()
+                    textColor: 'black'
                   };
                   calendar.fullCalendar('renderEvent',
                     newEvent,
                     true // make the event 'stick'
                   );
-                  db.get('events').push(newEvent).value();
+
+                  events.save(newEvent);
                 }
                 calendar.fullCalendar('unselect');
               }
@@ -106,13 +100,14 @@ $(document).ready(function() {
                 event.backgroundColor = 'green';
                 $('#calendar').fullCalendar('updateEvent', event);
 
-                db.get('events').find({id: event.id}).assign({
+                var eventToUpdate = {
                   surname: event.surname,
                   name: event.name,
                   title: event.title,
                   backgroundColor: event.backgroundColor
-                }).value();
-                db.write('db');
+                };
+
+                events.update(event.id, eventToUpdate);
               }
             }
           }
@@ -137,7 +132,7 @@ $(document).ready(function() {
     });
 
   // Render previously saved events from local storage
-  events.forEach(function(event) {
+  events.getAll().forEach(function(event) {
     calendar.fullCalendar('renderEvent', event, true);
   });
 });
