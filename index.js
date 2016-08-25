@@ -5,8 +5,6 @@ require('moment');
 require('fullcalendar');
 require('fullcalendar-scheduler');
 
-const bootbox = require('bootbox');
-
 const events = require('./lib/events');
 const floors = require('./lib/floors');
 const onSelect = require('./lib/on-select');
@@ -31,7 +29,7 @@ $(document).ready(function() {
       eventClick: onClick,
 
       eventRender: function(event, element) {
-        element.find('.fc-title').append(`<br/>${event.description}`);
+        element.find('.fc-title').append(`<br/>`);
       },
 
       resourceColumns: [
@@ -45,8 +43,11 @@ $(document).ready(function() {
       resources: floors
     });
 
-  // Render previously saved events from local storage
-  events.getAll().forEach((event) => {
+  displayStoredEvents(calendar);
+});
+
+function displayStoredEvents(calendar) {
+  events.getAll().forEach(event => {
     calendar.fullCalendar('renderEvent', event, true);
   });
-});
+}
