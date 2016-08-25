@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="surname">Прізвище</label>
+                <div class="col-md-4">
+                    <input id="surname" name="surname" type="text" value="{{surname}}"
+                           placeholder="Прізвище" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="name">Ім`я</label>
+                <div class="col-md-4">
+                    <input id="name" class="form-control input-md" value="{{name}}"
+                           name="name" type="text" placeholder="Ім`я">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="middlename">По-батькові</label>
+                <div class="col-md-4">
+                    <input id="middlename" class="form-control input-md" name="middlename"
+                           type="text" placeholder="По-батькові">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="isFamily">Сімейник</label>
+                <div class="col-md-4">
+                    <input id="isFamily" name="isFamily" type="checkbox" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="purpose">Мета поселення</label>
+                <div class="col-md-4">
+                    <textarea id="purpose" class="form-control input-md" name="purpose"
+                              style="resize:none" rows="2" placeholder="Мета поселення">
+                    </textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="birthDate">Дата народження</label>
+                <div class="col-md-4">
+                    <input id="birthDate" class="form-control input-md"
+                           name="birthDate" type="date" value="{{birthDate}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pasportInfo">Паспортні дані</label>
+                <div class="col-md-4">
+                    <input id="pasportInfo" class="form-control input-md" name="pasportInfo"
+                           type="text" placeholder="Паспортні дані">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="livesBy">Поселений за</label>
+                <div class="col-md-4">
+                    <select class="form-control" id="livesBy" name="livesBy">
+                        <option>Поданням</option>
+                        <option>Наказом</option>
+                        <option>...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="startDate">Дата поселення</label>
+                <div class="col-md-4">
+                    <input id="startDate" name="startDate" type="date" class="form-control input-md"
+                           value="{{livingStartDate}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="startTime">Час поселення</label>
+                <div class="col-md-4">
+                    <input id="startTime" name="startTime" type="time" class="form-control input-md"
+                           value="{{livingStartTime}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="endDate">Дата виселення</label>
+                <div class="col-md-4">
+                    <input id="endDate" name="endDate" type="date" class="form-control input-md"
+                           value="{{livingEndDate}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="endTime">Час виселення</label>
+                <div class="col-md-4">
+                    <input id="endTime" name="endTime" type="time" class="form-control input-md"
+                           value="{{livingEndTime}}">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

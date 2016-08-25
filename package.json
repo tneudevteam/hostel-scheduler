@@ -4,10 +4,10 @@
   "description": "Hostel Scheduler",
   "main": "index.js",
   "scripts": {
-    "build": "browserify index.js > bundle.js",
+    "build": "browserify -t browserify-handlebars index.js > bundle.js",
     "start": "opn ./index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify index.js -o bundle.js -v"
+    "watch": "watchify -t browserify-handlebars index.js -o bundle.js -v"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "bootstrap": "^3.3.7",
     "cuid": "^1.3.8",
     "fullcalendar-scheduler": "^1.3.3",
+    "handlebars": "^4.0.5",
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
     "lowdb": "^0.13.1",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "browserify": "^13.1.0",
+    "browserify-handlebars": "^1.0.0",
     "watchify": "^3.7.0"
   }
 }

@@ -10,6 +10,9 @@ var _ = window._ = require('lodash');
 var low = require('lowdb');
 var cuid = require('cuid');
 
+var addResidentTemplate = require('./templates/add-resident.handlebars');
+var editResidentTemplate = require('./templates/edit-resident.handlebars');
+
 $(document).ready(function() {
   var date = new Date();
   var db = low('db');
@@ -32,74 +35,13 @@ $(document).ready(function() {
       select: function(start, end, jsEvent, view, resource) {
         bootbox.dialog({
           title: "This is a form in a modal.",
-          message: '<div class="row">  ' +
-          '<div class="col-md-12"> ' +
-          '<form class="form-horizontal"> ' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="surname">Прізвище</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="surname" name="surname" type="text" placeholder="Прізвище" class="form-control input-md"> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="name">Ім`я</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="name" name="name" type="text" placeholder="Ім`я" class="form-control input-md"> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="middlename">По-батькові</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="middlename" name="middlename" type="text" placeholder="По-батькові" class="form-control input-md"> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="isFamily" class="form-control">Сімейник</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="isFamily" name="isFamily" type="checkbox" value="">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="purpose">Мета поселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<textarea id="purpose" name="purpose" style="resize:none" rows="2" placeholder="Мета поселення" class="form-control input-md"/> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="birthDate">Дата народження</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="birthDate" name="birthDate" type="date" class="form-control input-md" value="' + start.format("YYYY-MM-DD") + '">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="pasportInfo">Паспортні дані</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="pasportInfo" name="pasportInfo" type="text" placeholder="Паспортні дані" class="form-control input-md"> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="livesBy">Поселений за</label> ' +
-          '<div class="col-md-4"> ' +
-          '<select class="form-control" id="livesBy" name="livesBy">' +
-          '<option>Поданням</option>' +
-          '<option>Наказом</option>' +
-          '<option>...</option>' +
-          '</select>' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="startDate">Дата поселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="startDate" name="startDate" type="date" class="form-control input-md" value="' + start.format("YYYY-MM-DD") + '">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="startTime">Час поселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="startTime" name="startTime" type="time" class="form-control input-md" value="' + start.format("HH:mm") + '">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="endDate">Дата виселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="endDate" name="endDate" type="date" class="form-control input-md" value="' + end.format("YYYY-MM-DD") + '">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="endTime">Час виселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="endTime" name="endTime" type="time" class="form-control input-md" value="' + end.format("HH:mm") + '">' +
-          '</div>  </div>' +
-          '</form> </div>  </div>',
+          message: addResidentTemplate({
+            birthDate: start.format("YYYY-MM-DD"),
+            livingStartDate: start.format("YYYY-MM-DD"),
+            livingStartTime: start.format("HH:mm"),
+            livingEndDate: end.format("YYYY-MM-DD"),
+            livingEndTime: end.format("HH:mm")
+          }),
           buttons: {
             success: {
               label: "Save",
@@ -140,74 +82,15 @@ $(document).ready(function() {
 
         bootbox.dialog({
           title: "This is a form in a modal.",
-          message: '<div class="row">  ' +
-          '<div class="col-md-12"> ' +
-          '<form class="form-horizontal"> ' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="surname">Прізвище</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="surname" name="surname" type="text" placeholder="Прізвище" class="form-control input-md" value="' + event.surname + '"></input> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="name">Ім`я</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="name" name="name" type="text" placeholder="Ім`я" class="form-control input-md" value="' + event.name + '"> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="middlename">По-батькові</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="middlename" name="middlename" type="text" placeholder="По-батькові" class="form-control input-md"> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="isFamily" class="form-control">Сімейник</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="isFamily" name="isFamily" type="checkbox" value="">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="purpose">Мета поселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<textarea id="purpose" name="purpose" style="resize:none" rows="2" placeholder="Мета поселення" class="form-control input-md"/> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="birthDate">Дата народження</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="birthDate" name="birthDate" type="date" class="form-control input-md" value="' + event.start.format("YYYY-MM-DD") + '">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="pasportInfo">Паспортні дані</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="pasportInfo" name="pasportInfo" type="text" placeholder="Паспортні дані" class="form-control input-md"> ' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="livesBy">Поселений за</label> ' +
-          '<div class="col-md-4"> ' +
-          '<select class="form-control" id="livesBy" name="livesBy">' +
-          '<option>Поданням</option>' +
-          '<option>Наказом</option>' +
-          '<option>...</option>' +
-          '</select>' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="startDate">Дата поселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="startDate" name="startDate" type="date" class="form-control input-md" value="' + event.start.format("YYYY-MM-DD") + '">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="startTime">Час поселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="startTime" name="startTime" type="time" class="form-control input-md" value="' + event.start.format("HH:mm") + '">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="endDate">Дата виселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="endDate" name="endDate" type="date" class="form-control input-md" value="' + event.end.format("YYYY-MM-DD") + '">' +
-          '</div>  </div>' +
-          '<div class="form-group"> ' +
-          '<label class="col-md-4 control-label" for="endTime">Час виселення</label> ' +
-          '<div class="col-md-4"> ' +
-          '<input id="endTime" name="endTime" type="time" class="form-control input-md" value="' + event.end.format("HH:mm") + '">' +
-          '</div>  </div>' +
-          '</form> </div>  </div>',
+          message: editResidentTemplate({
+            name: event.name,
+            surname: event.surname,
+            birthDate: event.start.format("YYYY-MM-DD"),
+            livingStartDate: event.start.format("YYYY-MM-DD"),
+            livingStartTime: event.start.format("HH:mm"),
+            livingEndDate: event.end.format("YYYY-MM-DD"),
+            livingEndTime: event.end.format("HH:mm")
+          }),
           buttons: {
             success: {
               label: "Save",
