@@ -4,9 +4,9 @@ require('bootstrap');
 require('moment');
 require('fullcalendar');
 require('fullcalendar-scheduler');
+window._ = require('lodash');
 
 var bootbox = require('bootbox');
-var _ = window._ = require('lodash');
 var low = require('lowdb');
 var cuid = require('cuid');
 
@@ -121,7 +121,6 @@ $(document).ready(function() {
       eventRender: function(event, element) {
         element.find('.fc-title').append("<br/>" + event.description);
       },
-
 
       resourceColumns: [
         {

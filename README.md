@@ -9,6 +9,8 @@
 4. `npm run build` - to bundle all JavaScript code into one file
     4.1 `npm run watch` - automatically rebuild code into bundle on every file change
 5. `npm start` - to open Hostel Scheduler in your browser
+6. ... make changes
+7. `npm run lint` - to check code style
 
 Currently all the events are stored in browser local storage.
 

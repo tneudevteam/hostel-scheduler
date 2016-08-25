@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "browserify -t browserify-handlebars index.js > bundle.js",
+    "lint": "eslint . --fix --format=node_modules/eslint-formatter-pretty",
     "start": "opn ./index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify -t browserify-handlebars index.js -o bundle.js -v"
@@ -34,6 +35,9 @@
   "devDependencies": {
     "browserify": "^13.1.0",
     "browserify-handlebars": "^1.0.0",
+    "eslint": "^3.3.1",
+    "eslint-config-google": "^0.6.0",
+    "eslint-formatter-pretty": "^0.3.1",
     "watchify": "^3.7.0"
   }
 }
