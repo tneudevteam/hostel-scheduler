@@ -1,3 +1,15 @@
+window.$ = window.jQuery = require('jquery');
+
+require('bootstrap');
+require('moment');
+require('fullcalendar');
+require('fullcalendar-scheduler');
+
+var bootbox = require('bootbox');
+var _ = window._ = require('lodash');
+var low = require('lowdb');
+var cuid = require('cuid');
+
 $(document).ready(function() {
   var date = new Date();
   var d = date.getDate();
