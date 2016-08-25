@@ -5,21 +5,20 @@ require('moment');
 require('fullcalendar');
 require('fullcalendar-scheduler');
 
-var bootbox = require('bootbox');
+const bootbox = require('bootbox');
 
-var events = require('./lib/events');
-var floors = require('./lib/floors');
-var onSelect = require('./lib/on-select');
-var onClick = require('./lib/on-click');
+const events = require('./lib/events');
+const floors = require('./lib/floors');
+const onSelect = require('./lib/on-select');
+const onClick = require('./lib/on-click');
 
 $(document).ready(function() {
-  var calendar = $('#calendar').fullCalendar(
+  const calendar = $('#calendar').fullCalendar(
     {
       header: {
         left: 'prev,next today',
         center: 'title'
       },
-
       schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
       defaultView: 'timelineMonth',
       nowIndicator: true,
@@ -32,12 +31,12 @@ $(document).ready(function() {
       eventClick: onClick,
 
       eventRender: function(event, element) {
-        element.find('.fc-title').append('<br/>' + event.description);
+        element.find('.fc-title').append(`<br/>${event.description}`);
       },
 
       resourceColumns: [
         {
-          labelText: 'Hostel',
+          labelText: 'Hostel #3',
           field: 'title'
         }
       ],
@@ -47,7 +46,7 @@ $(document).ready(function() {
     });
 
   // Render previously saved events from local storage
-  events.getAll().forEach(function(event) {
+  events.getAll().forEach((event) => {
     calendar.fullCalendar('renderEvent', event, true);
   });
 });
