@@ -10,8 +10,8 @@ var bootbox = require('bootbox');
 var addResidentTemplate = require('./templates/add-resident.handlebars');
 var editResidentTemplate = require('./templates/edit-resident.handlebars');
 
-var events = require('./events');
-var floors = require('./floors');
+var events = require('./lib/events');
+var floors = require('./lib/floors');
 
 $(document).ready(function() {
   var calendar = $('#calendar').fullCalendar(
