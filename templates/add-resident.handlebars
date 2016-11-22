@@ -1,93 +1,106 @@
 <div class="row">
     <div class="col-md-12">
         <form class="form-horizontal">
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="surname">Прізвище</label>
-                <div class="col-md-4">
-                    <input id="surname" name="surname" type="text"
-                           placeholder="Прізвище" class="form-control input-md">
+            <div class="row">
+                <div class="col col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Загальна інформація</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="surname">Прізвище</label>
+                                <input type="text" class="form-control" id="surname" placeholder="Прізвище">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Ім'я</label>
+                                <input type="text" class="form-control" id="name" placeholder="Ім'я">
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name">По-батькові</label>
+                                <input type="text" class="form-control" id="middle-name" placeholder="По-батькові">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Пошук інформації</h3>
+                        </div>
+                        <div class="panel-body">
+                            <button type="button" class="btn btn-primary" data-action="search">Пошук</button>
+                            <button type="button" class="btn btn-primary"
+                                    data-action="refresh-search">Оновити пошук
+                            </button>
+                            <br>
+                            <br>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    ПІБ / Дата народження
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Янік Іван Іванович / 11.11.91</a></li>
+                                    <li><a href="#">Роман Іван Петро / 12.12.92</a></li>
+                                    <li><a href="#">Тимофій Іван Роман / 13.13.93</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Паспортні Дані</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col col-md-6">
+                                    <div class="form-group">
+                                        <label for="passport-serial-number">Серія</label>
+                                        <input type="text" class="form-control" id="passport-serial-number"
+                                               placeholder="Серія">
+                                    </div>
+                                </div>
+                                <div class="col col-md-6">
+                                    <div class="form-group">
+                                        <label for="passport-number">Номер</label>
+                                        <input type="text" class="form-control" id="passport-number"
+                                               placeholder="Номер">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-issued-by">Ким виданий</label>
+                                <input type="text" class="form-control" id="passport-issued-by"
+                                       placeholder="Ким виданий">
+                            </div>
+                            <div class="row">
+                                <div class="col col-md-6">
+                                    <div class="form-group">
+                                        <label for="passport-issued-date">Дата видачі</label>
+                                        <input type="text" class="form-control" id="passport-issued-date"
+                                               placeholder="Дата видачі">
+                                    </div>
+                                </div>
+                                <div class="col col-md-6">
+                                    <div class="form-group">
+                                        <label for="passport-birth-year">Рік народження</label>
+                                        <input type="text" class="form-control" id="passport-birth-year"
+                                               placeholder="Рік народження">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="name">Ім`я</label>
-                <div class="col-md-4">
-                    <input id="name" class="form-control input-md" name="name"
-                           type="text" placeholder="Ім`я">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="middlename">По-батькові</label>
-                <div class="col-md-4">
-                    <input id="middlename" class="form-control input-md" name="middlename"
-                           type="text" placeholder="По-батькові">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="isFamily">Сімейник</label>
-                <div class="col-md-4">
-                    <input id="isFamily" name="isFamily" type="checkbox" value="">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="purpose">Мета поселення</label>
-                <div class="col-md-4">
-                    <textarea id="purpose" class="form-control input-md" name="purpose"
-                              style="resize:none" rows="2" placeholder="Мета поселення">
-                    </textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="birthDate">Дата народження</label>
-                <div class="col-md-4">
-                    <input id="birthDate" class="form-control input-md"
-                           name="birthDate" type="date" value="{{birthDate}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="pasportInfo">Паспортні дані</label>
-                <div class="col-md-4">
-                    <input id="pasportInfo" class="form-control input-md" name="pasportInfo"
-                           type="text" placeholder="Паспортні дані">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="livesBy">Поселений за</label>
-                <div class="col-md-4">
-                    <select class="form-control" id="livesBy" name="livesBy">
-                        <option>Поданням</option>
-                        <option>Наказом</option>
-                        <option>...</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="startDate">Дата поселення</label>
-                <div class="col-md-4">
-                    <input id="startDate" name="startDate" type="date" class="form-control input-md"
-                           value="{{livingStartDate}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="startTime">Час поселення</label>
-                <div class="col-md-4">
-                    <input id="startTime" name="startTime" type="time" class="form-control input-md"
-                           value="{{livingStartTime}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="endDate">Дата виселення</label>
-                <div class="col-md-4">
-                    <input id="endDate" name="endDate" type="date" class="form-control input-md"
-                           value="{{livingEndDate}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="endTime">Час виселення</label>
-                <div class="col-md-4">
-                    <input id="endTime" name="endTime" type="time" class="form-control input-md"
-                           value="{{livingEndTime}}">
-                </div>
-            </div>
+
+
         </form>
     </div>
 </div>
