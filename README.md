@@ -20,4 +20,5 @@ You can write in ES2015, Babel is included to the project.
 # Screenshots
 
 ![Main Screen](media/main-screen.png)
+
 ![Modal Window](media/modal-window.png)
